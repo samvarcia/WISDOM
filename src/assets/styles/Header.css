@@ -1,0 +1,15 @@
+.logoContainer {
+  display: flex;
+}
+.logoText {
+  margin-left: 5px;
+  font-weight: 900;
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

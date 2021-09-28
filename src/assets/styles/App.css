@@ -2,3 +2,6 @@ body {
   font-family: "Inter", sans-serif;
   background-color: #e7f0ff;
 }
+.App {
+  padding: 0px 45px;
+}
