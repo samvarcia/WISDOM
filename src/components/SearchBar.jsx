@@ -3,33 +3,29 @@ import "../assets/styles/SearchBar.css";
 // `https://www.googleapis.com/books/v1/volumes?q=${inputValue}&key=AIzaSyALDggCOOmL1KcYb1k6u-1fUykRB63IWj4`,
 function SearchBar() {
   const [query, setQuery] = useState("");
-  const [cards, setCards] = useState();
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyALDggCOOmL1KcYb1k6u-1fUykRB63IWj4`
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setCards(result.items);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <p>Data is loading...</p>;
-  }
+    if (query.length) {
+      fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${query}&key=AIzaSyALDggCOOmL1KcYb1k6u-1fUykRB63IWj4`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setData(data.items);
+        });
+    }
+  }, [query]);
 
   return (
     <section>
-      <h1>📚 Search a book</h1>
+      <h1>
+        <span role="img" aria-label="Home">
+          📚
+        </span>{" "}
+        Search a book
+      </h1>
       <input
         value={query}
         className="searchInput"
@@ -37,9 +33,16 @@ function SearchBar() {
         placeholder="🔍 Search any book"
         onChange={(e) => setQuery(e.target.value)}
       />
-      {cards.map((item) => (
-        <div key={item.id}>{item.volumeInfo.title}</div>
-      ))}
+
+      {Boolean(query.length) ? (
+        <div>
+          {data.map((item) => (
+            <div key={item.id}>{item.volumeInfo.title}</div>
+          ))}
+        </div>
+      ) : (
+        <h1>Busca algun libro</h1>
+      )}
     </section>
   );
 }

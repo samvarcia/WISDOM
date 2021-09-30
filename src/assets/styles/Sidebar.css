@@ -10,3 +10,15 @@
   text-decoration: none;
   color: #000;
 }
+@media screen and (max-width: 768px) {
+  .sidebar-container {
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+  }
+  .sidebar-container a {
+    text-align: center;
+    margin-top: 0px;
+    font-size: 18px;
+  }
+}
