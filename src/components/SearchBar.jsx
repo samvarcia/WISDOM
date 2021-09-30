@@ -4,9 +4,15 @@ export const message = "RESULTS";
 
 function SearchBar() {
   const getValue = (event) => {
-    console.log(event.target.value);
+    const inputValue = event.target.value;
+    fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${inputValue}&key=AIzaSyALDggCOOmL1KcYb1k6u-1fUykRB63IWj4`
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result.items);
+      });
   };
-
   return (
     <section>
       <h1>📚 Search a book</h1>
