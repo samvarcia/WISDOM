@@ -1,8 +1,15 @@
 .searchInput {
   background: #dae3f2;
-  width: 80%;
+  width: 90%;
   border: none;
   border-radius: 19px;
   padding: 18px;
   font-family: "Inter", sans-serif;
+}
+.books-container {
+  width: 100%;
+  border: 1px solid red;
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
 }

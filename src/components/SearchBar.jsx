@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Book from "./Book";
 import "../assets/styles/SearchBar.css";
-// `https://www.googleapis.com/books/v1/volumes?q=${inputValue}&key=AIzaSyALDggCOOmL1KcYb1k6u-1fUykRB63IWj4`,
+import noCover from "../assets/img/NoCover.png";
 function SearchBar() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
@@ -12,7 +13,7 @@ function SearchBar() {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setData(data.items);
         });
     }
@@ -35,13 +36,31 @@ function SearchBar() {
       />
 
       {Boolean(query.length) ? (
-        <div>
-          {data.map((item) => (
-            <div key={item.id}>{item.volumeInfo.title}</div>
-          ))}
+        <div className="books-container">
+          {data.map((item) => {
+            return item.volumeInfo.imageLinks ? (
+              // <div>
+              //   <img
+              //     src={item.volumeInfo.imageLinks.thumbnail}
+              //     alt={item.volumeInfo.title}
+              //   />
+              //   <h2>{item.volumeInfo.title}</h2>
+              // </div>
+              <Book
+                cover={item.volumeInfo.imageLinks.thumbnail}
+                title={item.volumeInfo.title}
+                year={item.volumeInfo.publishedDate}
+              />
+            ) : (
+              <div>
+                <img src={noCover} alt={item.volumeInfo.title} />
+                <h2>{item.volumeInfo.title}</h2>
+              </div>
+            );
+          })}
         </div>
       ) : (
-        <h1>Busca algun libro</h1>
+        <h1>Look for a book you've read, want to read or are reading</h1>
       )}
     </section>
   );
