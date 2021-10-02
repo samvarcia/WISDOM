@@ -47,12 +47,15 @@ function SearchBar() {
               //   <h2>{item.volumeInfo.title}</h2>
               // </div>
               <Book
+                key={item.id}
                 cover={item.volumeInfo.imageLinks.thumbnail}
                 title={item.volumeInfo.title}
+                author={item.volumeInfo.authors}
                 year={item.volumeInfo.publishedDate}
               />
             ) : (
               <div>
+                key={item.id}
                 <img src={noCover} alt={item.volumeInfo.title} />
                 <h2>{item.volumeInfo.title}</h2>
               </div>

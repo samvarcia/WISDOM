@@ -1,0 +1,11 @@
+.bookCover {
+  width: 80%;
+}
+.bookContainer {
+  margin: 10px;
+}
+.bookInfo {
+  width: 80%;
+
+  /* border: 1px solid red; */
+}
