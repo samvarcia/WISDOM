@@ -12,6 +12,10 @@
   border-radius: 5px;
   font-size: 18px;
   cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+.buttons-container button:hover {
+  transform: scale(1.1);
 }
 .readingButton {
   background-color: #16c60c;
