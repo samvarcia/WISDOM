@@ -2,10 +2,9 @@
   width: 80%;
 }
 .bookContainer {
+  width: 100%;
   margin: 10px;
 }
 .bookInfo {
   width: 80%;
-
-  /* border: 1px solid red; */
 }

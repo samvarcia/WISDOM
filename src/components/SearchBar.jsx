@@ -13,7 +13,6 @@ function SearchBar() {
       )
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data);
           setData(data.items);
         });
     }
@@ -39,13 +38,6 @@ function SearchBar() {
         <div className="books-container">
           {data.map((item) => {
             return item.volumeInfo.imageLinks ? (
-              // <div>
-              //   <img
-              //     src={item.volumeInfo.imageLinks.thumbnail}
-              //     alt={item.volumeInfo.title}
-              //   />
-              //   <h2>{item.volumeInfo.title}</h2>
-              // </div>
               <Book
                 key={item.id}
                 cover={item.volumeInfo.imageLinks.thumbnail}
@@ -54,8 +46,7 @@ function SearchBar() {
                 year={item.volumeInfo.publishedDate}
               />
             ) : (
-              <div>
-                key={item.id}
+              <div key={item.id}>
                 <img src={noCover} alt={item.volumeInfo.title} />
                 <h2>{item.volumeInfo.title}</h2>
               </div>

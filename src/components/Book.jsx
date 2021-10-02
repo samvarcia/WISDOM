@@ -1,5 +1,6 @@
 import React from "react";
 import "../assets/styles/Book.css";
+import Buttons from "./Buttons";
 
 function Book(props) {
   return (
@@ -10,6 +11,7 @@ function Book(props) {
         <p>{props.author}</p>
         <p>{props.year}</p>
       </div>
+      <Buttons />
     </div>
   );
 }

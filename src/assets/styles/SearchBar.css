@@ -8,10 +8,10 @@
 }
 .books-container {
   width: 100%;
-  /* border: 1px solid red; */
   margin-top: 15px;
   display: grid;
   grid-template-columns: repeat(4, 25%);
+  gap: 5px;
 }
 @media screen and (max-width: 768px) {
   .books-container {
