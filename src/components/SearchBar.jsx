@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Book from "./Book";
+import BookList from "./BookList";
 import "../assets/styles/SearchBar.css";
-import noCover from "../assets/img/NoCover.png";
 function SearchBar() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
+  const [reading, setReading] = useState("");
 
   useEffect(() => {
     if (query.length) {
@@ -17,6 +17,12 @@ function SearchBar() {
         });
     }
   }, [query]);
+
+  const addReading = (book) => {
+    const newReadingList = [...reading, book];
+    setReading(newReadingList);
+    console.log(newReadingList);
+  };
 
   return (
     <section>
@@ -36,26 +42,14 @@ function SearchBar() {
 
       {Boolean(query.length) ? (
         <div className="books-container">
-          {data.map((item) => {
-            return item.volumeInfo.imageLinks ? (
-              <Book
-                key={item.id}
-                cover={item.volumeInfo.imageLinks.thumbnail}
-                title={item.volumeInfo.title}
-                author={item.volumeInfo.authors}
-                year={item.volumeInfo.publishedDate}
-              />
-            ) : (
-              <div key={item.id}>
-                <img src={noCover} alt={item.volumeInfo.title} />
-                <h2>{item.volumeInfo.title}</h2>
-              </div>
-            );
-          })}
+          <BookList books={data} handleReadingClick={addReading} />
         </div>
       ) : (
         <h1>Look for a book you've read, want to read or are reading</h1>
       )}
+      {/* <div className="books-container">
+        <BookList books={reading} handleReadingClick={addReading} />
+      </div> */}
     </section>
   );
 }

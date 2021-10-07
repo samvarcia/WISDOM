@@ -1,5 +1,18 @@
+html {
+  scrollbar-color: #6969dd #e0e0e0;
+  scrollbar-width: thin;
+}
+
 body {
   font-family: "Inter", sans-serif;
   background-color: #e7f0ff;
   padding: 0px 45px;
+}
+.books-row {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(2, 50%);
+  gap: 5px;
+  /* overflow-x: auto; */
 }

@@ -1,6 +1,6 @@
 .searchInput {
   background: #dae3f2;
-  width: 90%;
+  width: 100%;
   border: none;
   border-radius: 19px;
   padding: 18px;
@@ -9,13 +9,12 @@
 .books-container {
   width: 100%;
   margin-top: 15px;
-  display: grid;
-  grid-template-columns: repeat(4, 25%);
-  gap: 5px;
+  display: flex;
+  overflow-x: auto;
 }
 @media screen and (max-width: 768px) {
-  .books-container {
+  /* .books-container {
     display: flex;
     flex-direction: column;
-  }
+  } */
 }
