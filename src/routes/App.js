@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import BookList from "../components/BookList";
-import SearchBar from "../components/SearchBar";
 import AreaHeader from "../components/AreaHeader";
 import Search from "../components/Search";
 import "../assets/styles/App.css";
@@ -9,8 +8,8 @@ import "../assets/styles/App.css";
 function App() {
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
-  const [reading, setReading] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
+  const [readingBooks, setReadingBooks] = useState([]);
+  const [wishlistBooks, setWishlistBooks] = useState([]);
 
   const getBookRequest = async (query) => {
     if (query.length) {
@@ -30,14 +29,21 @@ function App() {
   }, [query]);
 
   const addReadingBook = (book) => {
-    const newReadingBook = [...reading, book];
-    setReading(newReadingBook);
-    console.log(reading);
+    const newReadingBook = [...readingBooks, book];
+    setReadingBooks(newReadingBook);
   };
 
   const addWishlistBook = (book) => {
-    const newWislist = [...wishlist, book];
-    setWishlist(newWislist);
+    const newWislist = [...wishlistBooks, book];
+    setWishlistBooks(newWislist);
+  };
+
+  const removeReadingBook = (book) => {
+    const newReadingBook = readingBooks.filter(
+      (readingBook) => readingBook.id !== book.id
+    );
+
+    setReadingBooks(newReadingBook);
   };
 
   return (
@@ -59,13 +65,18 @@ function App() {
       <div className="reading-area">
         <AreaHeader title="📖 Reading this books" />
         <div className="reading-row">
-          <BookList books={reading} buttons={false} />
+          <BookList
+            books={readingBooks}
+            buttons={false}
+            buttonsBook={true}
+            handleRemoveClick={removeReadingBook}
+          />
         </div>
       </div>
       <div className="reading-area">
         <AreaHeader title="🌟 My wishlist of Books" />
         <div className="reading-row">
-          <BookList books={wishlist} buttons={false} />
+          <BookList books={wishlistBooks} buttons={false} />
         </div>
       </div>
     </div>

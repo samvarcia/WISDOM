@@ -13,8 +13,6 @@ function BookList(props) {
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                // flexBasis: "400px",
-                // height: "300px",
               }}
             >
               <div className="bookInfo-content">
@@ -36,6 +34,23 @@ function BookList(props) {
                       className="wishlistButton"
                     >
                       Wishlist
+                    </button>
+                  </div>
+                ) : props.buttonsBook ? (
+                  <div className="buttons-container">
+                    <button
+                      onClick={() => props.handleReadingClick(book)}
+                      type="button"
+                      className="readingButton"
+                    >
+                      Read
+                    </button>
+                    <button
+                      onClick={() => props.handleRemoveClick(book)}
+                      type="button"
+                      className="wishlistButton"
+                    >
+                      Remove
                     </button>
                   </div>
                 ) : (

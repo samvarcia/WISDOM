@@ -9,11 +9,16 @@ body {
   padding: 0px 45px;
 }
 .books-row-one {
-  /* margin-top: 10px; */
-  display: grid;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: scroll;
+  margin-top: 10px;
+  /* display: grid;
   grid-template-columns: repeat(5, 20%);
   grid-template-rows: repeat(2, 50%);
-  gap: 5px;
+  gap: 5px; */
   /* overflow-x: auto; */
 }
 .reading-row {
@@ -22,4 +27,15 @@ body {
   justify-content: space-between;
   align-items: center;
   overflow-x: scroll;
+}
+@media screen and (max-width: 768px) {
+  .books-row-one,
+  .reading-row {
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+  /* .reading-row {
+    flex-direction: column;
+    overflow-x: hidden;
+  } */
 }
