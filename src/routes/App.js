@@ -10,6 +10,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [reading, setReading] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
 
   const getBookRequest = async (query) => {
     if (query.length) {
@@ -34,6 +35,11 @@ function App() {
     console.log(reading);
   };
 
+  const addWishlistBook = (book) => {
+    const newWislist = [...wishlist, book];
+    setWishlist(newWislist);
+  };
+
   return (
     <div className="App">
       <Header />
@@ -46,6 +52,7 @@ function App() {
         <BookList
           books={books}
           handleReadingClick={addReadingBook}
+          handleWishlistClick={addWishlistBook}
           buttons={true}
         />
       </div>
@@ -53,6 +60,12 @@ function App() {
         <AreaHeader title="📖 Reading this books" />
         <div className="reading-row">
           <BookList books={reading} buttons={false} />
+        </div>
+      </div>
+      <div className="reading-area">
+        <AreaHeader title="🌟 My wishlist of Books" />
+        <div className="reading-row">
+          <BookList books={wishlist} buttons={false} />
         </div>
       </div>
     </div>

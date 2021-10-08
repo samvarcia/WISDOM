@@ -30,7 +30,11 @@ function BookList(props) {
                     >
                       Reading
                     </button>
-                    <button type="button" className="wishlistButton">
+                    <button
+                      onClick={() => props.handleWishlistClick(book)}
+                      type="button"
+                      className="wishlistButton"
+                    >
                       Wishlist
                     </button>
                   </div>
