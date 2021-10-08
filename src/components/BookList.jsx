@@ -21,19 +21,23 @@ function BookList(props) {
                 <h2>{book.volumeInfo.title}</h2>
                 <p>{book.volumeInfo.authors}</p>
                 <p>{book.volumeInfo.publishedDate}</p>
+                {props.buttons ? (
+                  <div className="buttons-container">
+                    <button
+                      onClick={() => props.handleReadingClick(book)}
+                      type="button"
+                      className="readingButton"
+                    >
+                      Reading
+                    </button>
+                    <button type="button" className="wishlistButton">
+                      Wishlist
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
-            </div>
-            <div className="buttons-container">
-              <button
-                onClick={() => props.handleReadingClick(book)}
-                type="button"
-                className="readingButton"
-              >
-                Reading
-              </button>
-              <button type="button" className="wishlistButton">
-                Wishlist
-              </button>
             </div>
           </div>
         ) : (

@@ -20,8 +20,6 @@ function App() {
 
       if (responseJson.items) {
         setBooks(responseJson.items);
-        console.log(responseJson.items);
-        // console.log(books);
       }
     }
   };
@@ -30,16 +28,32 @@ function App() {
     getBookRequest(query);
   }, [query]);
 
+  const addReadingBook = (book) => {
+    const newReadingBook = [...reading, book];
+    setReading(newReadingBook);
+    console.log(reading);
+  };
+
   return (
     <div className="App">
       <Header />
       <div className="search-area">
-        <AreaHeader title="📚  Search a book" />
+        <AreaHeader title="📚 Search a book" />
         <Search setQuery={setQuery} query={query} />
       </div>
 
-      <div className="books-row">
-        <BookList books={books} />
+      <div className="books-row-one">
+        <BookList
+          books={books}
+          handleReadingClick={addReadingBook}
+          buttons={true}
+        />
+      </div>
+      <div className="reading-area">
+        <AreaHeader title="📖 Reading this books" />
+        <div className="reading-row">
+          <BookList books={reading} buttons={false} />
+        </div>
       </div>
     </div>
   );

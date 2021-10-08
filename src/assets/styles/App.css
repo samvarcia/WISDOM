@@ -8,11 +8,18 @@ body {
   background-color: #e7f0ff;
   padding: 0px 45px;
 }
-.books-row {
-  margin-top: 10px;
+.books-row-one {
+  /* margin-top: 10px; */
   display: grid;
   grid-template-columns: repeat(5, 20%);
   grid-template-rows: repeat(2, 50%);
   gap: 5px;
   /* overflow-x: auto; */
+}
+.reading-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: scroll;
 }

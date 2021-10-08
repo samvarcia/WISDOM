@@ -40,29 +40,12 @@ h2 {
   /* display: none; */
 }
 
-/* .bookContent {
-  width: 200px;
-  height: 100%;
-}
-.bookInfo-content {
-  display: none;
-  width: 200px;
-  height: 100%;
-}
-.bookInfo-content::hover {
-  display: block;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.31);
-  width: 200px;
-  height: 100%;
-  color: #fff;
-} */
-/* .buttons-container {
-  width: 100%;
+.buttons-container {
+  padding: 10px;
+  width: 80%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 .buttons-container button {
   font-family: "Inter", sans-serif;
@@ -83,4 +66,4 @@ h2 {
 .wishlistButton {
   background-color: #fce100;
   margin-top: 5px;
-} */
+}
