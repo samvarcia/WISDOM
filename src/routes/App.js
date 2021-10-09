@@ -4,6 +4,8 @@ import BookList from "../components/BookList";
 import AreaHeader from "../components/AreaHeader";
 import Search from "../components/Search";
 import placement from "../assets/img/PLACEMENT.svg";
+import reading from "../assets/img/reading.svg";
+import wishlist from "../assets/img/wishlist.svg";
 import "../assets/styles/App.css";
 
 function App() {
@@ -29,6 +31,14 @@ function App() {
     getBookRequest(query);
   }, [query]);
 
+  useEffect(() => {
+    const readingBook = JSON.parse(localStorage.getItem("wisdom-reading"));
+
+    if (readingBook) {
+      setReadingBooks(readingBook);
+    }
+  }, []);
+
   const saveToLocalStorage = (items) => {
     localStorage.setItem("wisdom-reading", JSON.stringify(items));
   };
@@ -49,6 +59,7 @@ function App() {
       (readingBook) => readingBook.id !== book.id
     );
     setReadingBooks(newReadingBook);
+    saveToLocalStorage(newReadingBook);
   };
   return (
     <div className="App">
@@ -58,39 +69,51 @@ function App() {
         <Search setQuery={setQuery} query={query} />
       </div>
 
-      <div className="books-row-one">
-        {query.length ? (
-          <BookList
-            books={books}
-            handleReadingClick={addReadingBook}
-            handleWishlistClick={addWishlistBook}
-            buttons={true}
-          />
-        ) : (
-          <div className="placement">
-            <div>
-              <img src={placement} alt="WISDOM" />
-              <p>Search for books you want to read or are reading.</p>
-            </div>
+      {query.length ? (
+        <BookList
+          books={books}
+          handleReadingClick={addReadingBook}
+          handleWishlistClick={addWishlistBook}
+          buttons={true}
+        />
+      ) : (
+        <div className="placement">
+          <div>
+            <img src={placement} alt="WISDOM" />
+            <p>Search for books you want to read or are reading.</p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       <div className="reading-area">
         <AreaHeader title="📖 Reading this books" />
-        <div className="reading-row">
+        {readingBooks.length ? (
           <BookList
             books={readingBooks}
             buttons={false}
             buttonsBook={true}
             handleRemoveClick={removeReadingBook}
           />
-        </div>
+        ) : (
+          <div className="placement">
+            <div>
+              <img src={reading} alt="WISDOM" />
+              <p>Add books you are reading</p>
+            </div>
+          </div>
+        )}
       </div>
       <div className="reading-area">
         <AreaHeader title="🌟 My wishlist of Books" />
-        <div className="reading-row">
+        {wishlistBooks.length ? (
           <BookList books={wishlistBooks} buttons={false} />
-        </div>
+        ) : (
+          <div className="placement">
+            <div>
+              <img src={wishlist} alt="WISDOM" />
+              <p>Add books you want to read</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -28,16 +28,12 @@
   width: 209px;
   height: 300px;
   padding: 5px;
-  /* display: none; */
-  /* width: 200px;
-  height: 300px; */
 }
 .bookInfo-content {
   width: 100%;
   height: 300px;
   visibility: hidden;
   display: none;
-  /* display: none; */
 }
 
 .buttons-container {
@@ -69,4 +65,10 @@
 }
 .removeButton {
   background-color: #ca3c25;
+}
+@media screen and (max-width: 768px) {
+  .bookInfo-content {
+    display: block;
+    visibility: visible;
+  }
 }
