@@ -33,25 +33,35 @@ function App() {
 
   useEffect(() => {
     const readingBook = JSON.parse(localStorage.getItem("wisdom-reading"));
-
     if (readingBook) {
       setReadingBooks(readingBook);
     }
   }, []);
 
-  const saveToLocalStorage = (items) => {
+  useEffect(() => {
+    const wishlistBook = JSON.parse(localStorage.getItem("wisdom-wishlist"));
+    if (wishlistBook) {
+      setWishlistBooks(wishlistBook);
+    }
+  }, []);
+
+  const saveToLocalStorageReading = (items) => {
     localStorage.setItem("wisdom-reading", JSON.stringify(items));
+  };
+  const saveToLocalStorageWishList = (items) => {
+    localStorage.setItem("wisdom-wishlist", JSON.stringify(items));
   };
 
   const addReadingBook = (book) => {
     const newReadingBook = [...readingBooks, book];
     setReadingBooks(newReadingBook);
-    saveToLocalStorage(newReadingBook);
+    saveToLocalStorageReading(newReadingBook);
   };
 
   const addWishlistBook = (book) => {
     const newWislist = [...wishlistBooks, book];
     setWishlistBooks(newWislist);
+    saveToLocalStorageWishList(newWislist);
   };
 
   const removeReadingBook = (book) => {
@@ -59,7 +69,7 @@ function App() {
       (readingBook) => readingBook.id !== book.id
     );
     setReadingBooks(newReadingBook);
-    saveToLocalStorage(newReadingBook);
+    saveToLocalStorageReading(newReadingBook);
   };
   return (
     <div className="App">
