@@ -9,10 +9,10 @@
   /* margin: 10px; */
   /* padding: 10px;*/
 }
-h2 {
+/* h2 {
   margin-top: 0;
   width: fit-content;
-}
+} */
 .bookContent:hover .bookInfo-content {
   text-align: center;
   visibility: visible;
@@ -42,6 +42,7 @@ h2 {
 
 .buttons-container {
   padding: 10px;
+  height: 100%;
   width: 80%;
   display: flex;
   align-items: center;
@@ -65,5 +66,7 @@ h2 {
 }
 .wishlistButton {
   background-color: #fce100;
-  margin-top: 5px;
+}
+.removeButton {
+  background-color: #ca3c25;
 }

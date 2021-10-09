@@ -39,18 +39,18 @@ function BookList(props) {
                 ) : props.buttonsBook ? (
                   <div className="buttons-container">
                     <button
+                      onClick={() => props.handleRemoveClick(book)}
+                      type="button"
+                      className="removeButton"
+                    >
+                      Remove
+                    </button>
+                    <button
                       onClick={() => props.handleReadingClick(book)}
                       type="button"
                       className="readingButton"
                     >
                       Read
-                    </button>
-                    <button
-                      onClick={() => props.handleRemoveClick(book)}
-                      type="button"
-                      className="wishlistButton"
-                    >
-                      Remove
                     </button>
                   </div>
                 ) : (
