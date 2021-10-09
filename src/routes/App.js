@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import BookList from "../components/BookList";
 import AreaHeader from "../components/AreaHeader";
 import Search from "../components/Search";
+import placement from "../assets/img/PLACEMENT.svg";
 import "../assets/styles/App.css";
 
 function App() {
@@ -28,9 +29,14 @@ function App() {
     getBookRequest(query);
   }, [query]);
 
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("wisdom-reading", JSON.stringify(items));
+  };
+
   const addReadingBook = (book) => {
     const newReadingBook = [...readingBooks, book];
     setReadingBooks(newReadingBook);
+    saveToLocalStorage(newReadingBook);
   };
 
   const addWishlistBook = (book) => {
@@ -42,10 +48,8 @@ function App() {
     const newReadingBook = readingBooks.filter(
       (readingBook) => readingBook.id !== book.id
     );
-
     setReadingBooks(newReadingBook);
   };
-
   return (
     <div className="App">
       <Header />
@@ -55,12 +59,21 @@ function App() {
       </div>
 
       <div className="books-row-one">
-        <BookList
-          books={books}
-          handleReadingClick={addReadingBook}
-          handleWishlistClick={addWishlistBook}
-          buttons={true}
-        />
+        {query.length ? (
+          <BookList
+            books={books}
+            handleReadingClick={addReadingBook}
+            handleWishlistClick={addWishlistBook}
+            buttons={true}
+          />
+        ) : (
+          <div className="placement">
+            <div>
+              <img src={placement} alt="WISDOM" />
+              <p>Search for books you want to read or are reading.</p>
+            </div>
+          </div>
+        )}
       </div>
       <div className="reading-area">
         <AreaHeader title="📖 Reading this books" />

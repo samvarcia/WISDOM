@@ -28,14 +28,21 @@ body {
   align-items: center;
   overflow-x: scroll;
 }
+.placement {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0px;
+}
+.placement img {
+  width: 100%;
+}
 @media screen and (max-width: 768px) {
   .books-row-one,
   .reading-row {
     flex-direction: column;
     overflow-x: hidden;
   }
-  /* .reading-row {
-    flex-direction: column;
-    overflow-x: hidden;
-  } */
 }
