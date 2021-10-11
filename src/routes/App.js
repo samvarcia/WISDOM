@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import BookList from "../components/BookList";
 import AreaHeader from "../components/AreaHeader";
 import Search from "../components/Search";
+import Modal from "../components/Modal";
+
 import placement from "../assets/img/PLACEMENT.svg";
 import reading from "../assets/img/reading.svg";
 import wishlist from "../assets/img/wishlist.svg";
@@ -13,6 +15,9 @@ function App() {
   const [books, setBooks] = useState([]);
   const [readingBooks, setReadingBooks] = useState([]);
   const [wishlistBooks, setWishlistBooks] = useState([]);
+  const [readBooksCount, setReadBooksCount] = useState(0);
+  const [readBooks, setReadBooks] = useState([]);
+  const [modal, setModal] = useState(false);
 
   const getBookRequest = async (query) => {
     if (query.length) {
@@ -71,6 +76,24 @@ function App() {
     setReadingBooks(newReadingBook);
     saveToLocalStorageReading(newReadingBook);
   };
+  const removeWishlistBook = (book) => {
+    const newWishlistBook = wishlistBooks.filter(
+      (wishlistBook) => wishlistBook.id !== book.id
+    );
+    setWishlistBooks(newWishlistBook);
+    saveToLocalStorageWishList(newWishlistBook);
+  };
+  const readbooksCounter = () => {
+    setReadBooksCount(readBooksCount + 1);
+  };
+  const addReadBook = (book) => {
+    setModal(true);
+    const newReadBook = [...readBooks, book];
+    setReadBooks(newReadBook);
+    removeReadingBook(book);
+    readbooksCounter();
+  };
+  const readingBooksHeader = `📖 Reading this books - ${readBooksCount} books read.`;
   return (
     <div className="App">
       <Header />
@@ -95,12 +118,13 @@ function App() {
         </div>
       )}
       <div className="reading-area">
-        <AreaHeader title="📖 Reading this books" />
+        <AreaHeader title={readingBooksHeader}></AreaHeader>
         {readingBooks.length ? (
           <BookList
             books={readingBooks}
             buttons={false}
             buttonsBook={true}
+            handleAddBookCount={addReadBook}
             handleRemoveClick={removeReadingBook}
           />
         ) : (
@@ -115,7 +139,13 @@ function App() {
       <div className="reading-area">
         <AreaHeader title="🌟 My wishlist of Books" />
         {wishlistBooks.length ? (
-          <BookList books={wishlistBooks} buttons={false} />
+          <BookList
+            books={wishlistBooks}
+            buttons={false}
+            handleReadingClick={addReadingBook}
+            handleRemoveWishlistClick={removeWishlistBook}
+            buttonsBookWishlist={true}
+          />
         ) : (
           <div className="placement">
             <div>
@@ -125,6 +155,13 @@ function App() {
           </div>
         )}
       </div>
+      {!!modal && (
+        <Modal>
+          <div className="read-container">
+            {readBooks.length ? <BookList books={readBooks} /> : ""}
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }
