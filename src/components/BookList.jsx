@@ -12,8 +12,9 @@ function BookList(props) {
       <div className="books-row-one">
         {props.books.map((book) => {
           return book.volumeInfo.imageLinks ? (
-            <div className="bookContainer" key={book.id}>
+            <div className="bookContainer">
               <div
+                key={book.id}
                 className="bookContent"
                 style={{
                   backgroundImage: `url(${book.volumeInfo.imageLinks.thumbnail})`,
