@@ -1,12 +1,10 @@
-html {
-  scrollbar-color: #6969dd #e0e0e0;
-  scrollbar-width: thin;
-}
-
 body {
   font-family: "Inter", sans-serif;
   background-color: #e7f0ff;
-  padding: 0px 45px;
+  /* padding: 0px 45px; */
+}
+.App {
+  padding: 0px 75px;
 }
 .books-row-one {
   margin-top: 30px;
@@ -43,9 +41,15 @@ body {
   cursor: pointer;
 }
 @media screen and (max-width: 768px) {
+  .App {
+    padding: 0px 10px;
+  }
   .books-row-one,
   .reading-row {
     flex-direction: column;
     overflow-x: hidden;
+  }
+  h1 {
+    font-size: 25px;
   }
 }

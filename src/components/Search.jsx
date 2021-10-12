@@ -2,7 +2,7 @@ import React from "react";
 import "../assets/styles/Search.css";
 function Search(props) {
   return (
-    <div>
+    <div className="searchInputContainer">
       <input
         className="searchInput"
         value={props.value}

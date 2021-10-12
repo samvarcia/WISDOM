@@ -20,6 +20,7 @@ function BookList(props) {
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
+                  borderRadius: "5px",
                 }}
               >
                 <div className="bookInfo-content" id="book-content">

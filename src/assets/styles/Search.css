@@ -1,8 +1,16 @@
+.searchInputContainer {
+  max-width: 100%;
+}
 .searchInput {
-  background: #dae3f2;
   width: 100%;
+  background: #dae3f2;
   border: none;
   border-radius: 19px;
   padding: 18px;
   font-family: "Inter", sans-serif;
+}
+@media screen and (max-width: 768px) {
+  .searchInput {
+    width: 95%;
+  }
 }
