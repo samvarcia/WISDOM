@@ -76,7 +76,17 @@ function BookList(props) {
                         type="button"
                         className="readingButton"
                       >
-                        Read
+                        Reading
+                      </button>
+                    </div>
+                  ) : props.buttonsReadBook ? (
+                    <div className="buttons-container-only">
+                      <button
+                        onClick={() => props.handleReadRemoveBook(book)}
+                        type="button"
+                        className="removeButton"
+                      >
+                        Remove
                       </button>
                     </div>
                   ) : (

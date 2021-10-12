@@ -1,0 +1,14 @@
+.areaHeader {
+  width: 100%;
+}
+.areaHeader h1 {
+  width: 100%;
+}
+.listModal {
+  color: #000;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+}
+.listModal:hover {
+  border-bottom: 3px solid linear-gradient(225deg, #0f3286 0%, #081c4e 100%);
+}

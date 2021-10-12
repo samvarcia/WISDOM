@@ -15,7 +15,6 @@ function App() {
   const [books, setBooks] = useState([]);
   const [readingBooks, setReadingBooks] = useState([]);
   const [wishlistBooks, setWishlistBooks] = useState([]);
-  const [readBooksCount, setReadBooksCount] = useState(0);
   const [readBooks, setReadBooks] = useState([]);
   const [modal, setModal] = useState(false);
 
@@ -49,6 +48,12 @@ function App() {
       setWishlistBooks(wishlistBook);
     }
   }, []);
+  useEffect(() => {
+    const readBook = JSON.parse(localStorage.getItem("wisdom-read"));
+    if (readBook) {
+      setReadBooks(readBook);
+    }
+  }, []);
 
   const saveToLocalStorageReading = (items) => {
     localStorage.setItem("wisdom-reading", JSON.stringify(items));
@@ -56,6 +61,12 @@ function App() {
   const saveToLocalStorageWishList = (items) => {
     localStorage.setItem("wisdom-wishlist", JSON.stringify(items));
   };
+  const saveToLocalStorageRead = (items) => {
+    localStorage.setItem("wisdom-read", JSON.stringify(items));
+  };
+  // const saveToLocalStorageReadCount = (count) => {
+  //   localStorage.setItem("wisdom-read-count", JSON.stringify(count));
+  // };
 
   const addReadingBook = (book) => {
     const newReadingBook = [...readingBooks, book];
@@ -83,17 +94,24 @@ function App() {
     setWishlistBooks(newWishlistBook);
     saveToLocalStorageWishList(newWishlistBook);
   };
-  const readbooksCounter = () => {
-    setReadBooksCount(readBooksCount + 1);
+  const openModal = () => {
+    setModal(true);
+  };
+  const closeModal = () => {
+    setModal(false);
   };
   const addReadBook = (book) => {
-    setModal(true);
     const newReadBook = [...readBooks, book];
     setReadBooks(newReadBook);
     removeReadingBook(book);
-    readbooksCounter();
+    saveToLocalStorageRead(newReadBook);
   };
-  const readingBooksHeader = `📖 Reading this books - ${readBooksCount} books read.`;
+  const removeReadBook = (book) => {
+    const newReadBook = readBooks.filter((readBook) => readBook.id !== book.id);
+    setReadBooks(newReadBook);
+    saveToLocalStorageRead(newReadBook);
+  };
+  const readingBooksHeader = `📖 Reading this books - You have read ${readBooks.length} books, `;
   return (
     <div className="App">
       <Header />
@@ -118,7 +136,11 @@ function App() {
         </div>
       )}
       <div className="reading-area">
-        <AreaHeader title={readingBooksHeader}></AreaHeader>
+        <AreaHeader
+          title={readingBooksHeader}
+          handleModal={openModal}
+          reading={true}
+        ></AreaHeader>
         {readingBooks.length ? (
           <BookList
             books={readingBooks}
@@ -158,7 +180,17 @@ function App() {
       {!!modal && (
         <Modal>
           <div className="read-container">
-            {readBooks.length ? <BookList books={readBooks} /> : ""}
+            <a onClick={() => closeModal()}>Close</a>
+            <h2>Your read books</h2>
+            {readBooks.length ? (
+              <BookList
+                buttonsReadBook={true}
+                handleReadRemoveBook={removeReadBook}
+                books={readBooks}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </Modal>
       )}

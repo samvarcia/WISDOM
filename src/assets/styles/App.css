@@ -34,6 +34,14 @@ body {
 .placement img {
   width: 100%;
 }
+.read-container {
+  color: #000;
+  text-align: center;
+  background-color: #e7f0ff;
+}
+.read-container a {
+  cursor: pointer;
+}
 @media screen and (max-width: 768px) {
   .books-row-one,
   .reading-row {
